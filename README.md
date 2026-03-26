@@ -39,3 +39,32 @@ simple-lms/
 3. Migrasi Database: Lakukan migrasi agar tabel PostgreSQL terbuat:
     docker compose run --rm web python manage.py migrate
 4. Akses Aplikasi: Buka browser di http://localhost:8000
+
+```
+## 🚀 Data Models, Django Admin & Query Optimization
+*Melanjutkan pengembangan LMS dengan mendesain schema database, relasi tabel, dan optimasi ORM.*
+
+### 🎯 Learning Objectives & Deliverables
+- ✅ **Data Models:** Membuat schema database untuk `User` (dengan role), `Category` (self-referencing), `Course`, `Lesson`, `Enrollment`, dan `Progress`.
+- ✅ **Query Optimization:** Mengatasi *N+1 Problem* menggunakan `select_related` dan `prefetch_related` melalui Custom Model Managers.
+- ✅ **Django Admin:** Konfigurasi *list display*, *search*, *filter*, dan *Inline Models* (Lesson di dalam Course).
+- ✅ **Data Fixtures:** Menyediakan file `initial_data.json` untuk kemudahan pengisian database awal.
+
+### 📊 Demo Optimasi Query (N+1 Problem)
+Untuk melihat perbandingan jumlah hit/query ke database (sebelum dan sesudah optimasi), jalankan perintah ini di terminal:
+```bash
+docker compose run --rm web python demo_queries.py
+```
+## 📸 Dokumentasi
+
+**1. Bukti Penghematan Query (Terminal):**
+
+![Query Optimization Result](img/query-optimization.png)
+
+**2. Konfigurasi Django Admin Panel:**
+
+![Django Admin Panel](img/admin-panel.png)
+
+## 📦 Cara Load Initial Data (Fixtures)
+Jika menjalankan project ini di komputer baru, load data dummy awal dengan perintah:
+docker compose run --rm web python manage.py loaddata initial_data.json
